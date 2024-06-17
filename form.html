@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="myFunctions.js" defer></script>
+    <title>متابعة</title>
+</head>
+<body>
+    <header>
+        <h1>متابعة</h1>
+    </header>
+    <main>
+        <form onsubmit="return validateForm()">
+            <label for="fullname">الاسم الكامل:</label>
+            <input type="text" id="fullname" name="fullname" required><br>
+
+            <label for="nationalId">الرقم الوطني:</label>
+            <input type="text" id="nationalId" name="nationalId" pattern="\d{11}" required><br>
+
+            <label for="dob">تاريخ الولادة:</label>
+            <input type="date" id="dob" name="dob" required><br>
+
+            <label for="phone">رقم الموبايل:</label>
+            <input type="tel" id="phone" name="phone" pattern="09\d{8}" required><br>
+
+            <label for="email">الإيميل:</label>
+            <input type="email" id="email" name="email" required><br>
+
+            <label for="captcha">أدخل الرمز:</label>
+            <input type="text" id="captcha" name="captcha" required><br>
+
+            <button type="submit">إرسال</button>
+        </form>
+    </main>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="AboutUs.html">About Us</a></li>
+            <li><a href="Properties.html">Properties</a></li>
+        </ul>
+    </nav>
+</body>
+</html>

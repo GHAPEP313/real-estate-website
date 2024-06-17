@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>العقارات</title>
+    <link rel="stylesheet" href="Style.css">
+    <script>
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('propertyForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (validateForm()) {
+            alert('تم إرسال النموذج بنجاح!');
+        }
+    });
+});
+
+function showDetails(button, propertyId) {
+    const details = {
+        property1: {
+            city: "دمشق",
+            area: "ركن الدين",
+            floor: "الطابق الثالث",
+            parking: "متوفر كراج",
+            ownership: "طابو",
+            balcony: "بلكون مساحة 12 متر",
+            furnished: "مفروشة",
+            images: ["image1.jpg", "image2.jpg"]
+        },
+        property2: {
+            city: "حمص",
+            area: "وسط البلد",
+            floor: "الأرضي",
+            parking: "غير متوفر",
+            ownership: "طابو",
+            balcony: "بدون بلكون",
+            furnished: "غير مفروشة",
+            images: ["image3.jpg"]
+        },
+        property3: {
+            city: "دمشق",
+            area: "المزة",
+            floor: "الطابق الأول",
+            parking: "متوفر كراج",
+            ownership: "طابو",
+            balcony: "بلكون مساحة 15 متر",
+            furnished: "غير مفروشة",
+            images: ["image4.jpg", "image5.jpg"]
+        }
+    };
+
+    const propertyDetails = details[propertyId];
+    const row = button.parentElement.parentElement;
+    const existingDetailsRow = row.nextElementSibling;
+
+    if (existingDetailsRow && existingDetailsRow.classList.contains('details-row')) {
+        existingDetailsRow.remove();
+    } else {
+        const detailsRow = document.createElement('tr');
+        detailsRow.classList.add('details-row');
+        let imagesHtml = propertyDetails.images.map(img => `<img src="${img}" alt="صورة العقار" style="width:100px;height:100px;">`).join('');
+        detailsRow.innerHTML = `
+            <td style="  vertical-align: middle;  text-align: center;">
+            <strong style="margin: 20px;" >المدينة  : ${propertyDetails.city}</strong> 
+            <strong style="margin: 20px;">المنطقة  :${propertyDetails.area}</strong>
+            </td>
+            <td style="  vertical-align: middle;  text-align: center;>
+            <strong style="margin: 20px;" >الطابق  :${propertyDetails.floor}</strong> 
+            <strong style="margin: 20px;">كراج  :${propertyDetails.parking}</strong>
+            <strong style="margin: 20px;" > الملكية:   ${propertyDetails.ownership}</strong>
+            </td>
+           <td style="  vertical-align: middle;  text-align: center;>
+            <strong style="margin: 20px;" >بلكون:   ${propertyDetails.balcony}</strong> 
+
+            <strong style="margin: 20px;" >مفروشة:   ${propertyDetails.furnished}</strong>
+              </td>
+              <td>
+             ${imagesHtml}
+             </td>
+                                   
+       ;`
+        row.insertAdjacentElement('afterend', detailsRow);
+    }
+}
+
+function validateForm() {
+    // Validate form inputs
+    const fullName = document.getElementById('fullName').value;
+    const nationalId = document.getElementById('nationalId').value;
+    const birthdate = document.getElementById('birthdate').value;
+    const mobile = document.getElementById('mobile').value;
+    const email = document.getElementById('email').value;
+    const captcha = document.getElementById('captcha').value;
+
+    if (!fullName &&  !nationalId && !birthdate && !mobile && !email || !captcha) {
+        alert('يرجى ملء جميع الحقول.');
+        return false;
+    }
+    // Further validation logic here
+    return true;
+}
+
+function generateCaptcha() {
+    // Captcha generation logic
+    alert('رمز التحقق تم توليده');
+    }
+    </script>
+</head>
+<body>
+    <h1>العقارات</h1>
+    <table >
+        <thead>
+            <tr>
+                <th>المدينة</th>
+                <th>التفاصيل</th>
+                <th>الإيجار الشهري</th>
+                <th>اختيار</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td >دمشق</td>
+                <td>شقة غرفة وصالة، مساحة 70 م²</td>
+                <td>500000 ل.س</td>
+                <td><button onclick="showDetails(this, 'property1')">إظهار التفاصيل</button></td>
+            </tr>
+            <tr>
+                <td >حمص</td>
+                <td>دكان، مساحة 50 م²</td>
+                <td>250000 ل.س</td>
+                <td><button onclick="showDetails(this, 'property2')">إظهار التفاصيل</button></td>
+            </tr>
+            <tr >
+                <td>دمشق</td>
+                <td>شقة فارغة غرفتين وصالة، مساحة 110 م²</td>
+                <td>600000 ل.س</td>
+                <td><button onclick="showDetails(this, 'property3')">إظهار التفاصيل</button></td>
+            </tr>
+            <!-- أضف المزيد من العقارات حسب الحاجة -->
+        
+        </tbody >
+    </table>
+</body>
+</html>
